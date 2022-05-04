@@ -12,13 +12,13 @@ class UserAuthController extends Controller
     public function register(Request $request) {
         $data = $request -> all();
 
-        $validator = Validator::make($request, [
+        $validator = Validator::make($data, [
             'firstName' => 'required',
             'lastName' => 'required',
             'email' => 'required',
             'phone' => 'required',
             'password' => 'required',
-            'confirm_password' => 'required | same: password',
+            'confirm_password' => 'required|same:password',
             'address' => 'required',
             'pinCode' => 'required'
         ]);
