@@ -24,6 +24,7 @@ Route::group(['prefix' => 'mechanics'], function() {
 Route::group(['prefix' => 'user'], function() {
     Route::post('/login', [UserAuthController::class, 'login']);
     Route::post('/register', [UserAuthController::class, 'register']);
+    Route::get('/current-user', [UserAuthController::class, 'getUser']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
