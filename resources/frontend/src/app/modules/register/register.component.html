@@ -9,7 +9,8 @@
                             <div class="form-group">
                                 <label for="first_name">First Name</label>
                                 <input type="text" class="form-control" name="first_name" id="first_name"
-                                    aria-describedby="firstname" placeholder="First Name" formControlName="firstName">
+                                    aria-describedby="firstname" required placeholder="First Name"
+                                    formControlName="firstName">
                                 <small id="firstname" class="form-text text-muted">Required</small>
                             </div>
                         </div>
@@ -68,6 +69,7 @@
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" name="password" formControlName="password"
                                     id="password" placeholder="Password">
+                                <small id="password" class="form-text text-muted">Required</small>
                             </div>
                         </div>
 
@@ -76,6 +78,7 @@
                                 <label for="confirmpassword">Confirm Password</label>
                                 <input type="password" class="form-control" formControlName="confirm_password"
                                     name="confirmpassword" id="confirmpassword" placeholder="Confirm Password">
+                                <small id="confirmpassword" class="form-text text-muted">Required</small>
                             </div>
                         </div>
                     </div>
@@ -94,7 +97,13 @@
                                 <button type="submit" class="btn btn-primary">Register</button>
 
 
-                                <span class="ml-3" *ngIf="loading">{{ loading }}</span>
+                                <div class="d-inline-block ml-3" *ngIf="loading">
+                                    <div class="d-inline-flex text-muted">
+                                        <i class="fa fa-circle-o-notch fa-spin fa-1x fa-fw"></i>
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <div class="d-inline-flex text-muted">Please wait...</div>
+                                </div>
                             </div>
                         </div>
                     </div>
