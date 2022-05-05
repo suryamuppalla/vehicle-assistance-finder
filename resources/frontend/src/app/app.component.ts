@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ApplicationService } from './services/application.service';
@@ -9,9 +9,10 @@ import { ApplicationService } from './services/application.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'frontend';
   public isAuthentication = false;
+  public user: any;
 
   constructor(
     private router: Router,
@@ -33,6 +34,7 @@ export class AppComponent {
       this.httpClient.get(`${environment.API}/user/current-user`)
         .subscribe((response: any) => {
           console.log(response);
+          this.applicationService.currentUser$.next(response);
         }, (error: any) => {
           console.log(error);
         });
@@ -43,5 +45,9 @@ export class AppComponent {
 
     this.applicationService.logout();
     this.router.navigate(['/login']);
+  }
+
+  ngOnInit(): void {
+    this.applicationService.currentUser$.subscribe(data => this.user = data);
   }
 }

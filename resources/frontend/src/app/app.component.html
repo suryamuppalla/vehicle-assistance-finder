@@ -20,8 +20,11 @@
       <li class="nav-item" *ngIf="!applicationService.isAuthenticated()">
         <a class="nav-link" routerLink="/login">Login</a>
       </li>
+      <li class="nav-item" *ngIf="user">
+        <a class="nav-link"><strong>{{ user?.firstName }} {{ user?.lastName }}</strong> ({{ user?.email }})</a>
+      </li>
       <li class="nav-item" (click)="logout()" *ngIf="applicationService.isAuthenticated()">
-        <a class="nav-link pointer">Logout</a>
+        <a class="nav-link pointer font-weight-bold">Logout</a>
       </li>
     </ul>
   </div>
