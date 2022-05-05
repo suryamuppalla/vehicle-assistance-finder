@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ApplicationService } from './services/application.service';
 
@@ -19,6 +19,11 @@ export class AppComponent {
     private httpClient: HttpClient
   ) {
     this.router.events.subscribe((ev) => {
+      if (ev instanceof NavigationStart) {
+        if (ev.url.indexOf('mechanic') > -1 && !applicationService.isAuthenticated()) {
+          this.router.navigate(['/login']);
+        }
+      }
       if(ev instanceof NavigationEnd) {
         this.isAuthentication = this.router.url.indexOf('/register') > -1 || this.router.url.indexOf('/login') > -1;
       }

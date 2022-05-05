@@ -6,13 +6,10 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/mechanics">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item" *ngIf="applicationService.isAuthenticated()">
+        <a class="nav-link">My Requests</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">My Requests</a>
-      </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="applicationService.isAuthenticated()">
         <a class="nav-link" routerLink="/add-mechanic">Add New Mechanic</a>
       </li>
     </ul>
