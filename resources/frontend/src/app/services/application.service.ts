@@ -19,5 +19,6 @@ export class ApplicationService {
 
   logout() {
     localStorage.removeItem('VEHICLE_AUTH_TOKEN');
+    this.currentUser$.next(null);
   }
 }

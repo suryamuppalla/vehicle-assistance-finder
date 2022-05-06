@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.httpClient.post(`${environment.API}/user/login`, this.form.value)
       .subscribe((response: any) => {
         console.log(response);
-        this.applicationService.currentUser$ = response.user;
+        this.applicationService.currentUser$.next(response.user);
         this.applicationService.setToken(response.token);
 
         this.router.navigate(['/mechanics']);
