@@ -38,23 +38,13 @@ class GarageController extends Controller
             return response($validator->errors(), 400);
         }
 
-        if ($files = $request->file('image')) {
-            $file = $request->file->store('public/images');
+        $mechanic = Garage::create($data);
 
-            if (!$file) {
-                return response('Unable to save file', 500);
-            }
-
-            $data['image'] = $file;
-
-            $mechanic = Garage::create($data);
-
-            if (!$mechanic) {
-                return response('Unable to add mechanic into database', 500);
-            }
-
-            return response($mechanic, 200);
+        if (!$mechanic) {
+            return response('Unable to add mechanic into database', 500);
         }
+
+        return response($mechanic, 200);
 
         return response('Unable to create!', 500);
     }

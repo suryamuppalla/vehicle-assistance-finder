@@ -22,7 +22,7 @@ class ImageController extends Controller
         }
 
         $fileName = $request->file('image')->getClientOriginalName();
-        $filePath = $request->file('image')->store('public/images');
+        $filePath = '/storage/app/'.$request->file('image')->store('public');
 
         $photo = new Photo();
 
