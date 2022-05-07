@@ -35,7 +35,7 @@ class GarageController extends Controller
             'title' => 'required',
             'description' => 'required',
             'address' => 'required',
-            'pinCode' => 'required',
+            'pincode' => 'required',
             'rating' => 'required',
             'phone' => 'required',
             'visiting_charges' => 'required',

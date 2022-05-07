@@ -86,7 +86,7 @@
                             </div>
                         </div>
 
-                        <div class="d-block">
+                        <div class="d-block" *ngIf="details?.image">
                             <div class="d-flex image-display">
                                 <img [src]="imageUrl + (details?.image)" alt="">
                             </div>

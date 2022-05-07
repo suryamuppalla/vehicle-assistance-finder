@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('requests', function (Blueprint $table) {
             $table->increments('id', true);
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('mechanic_id');
+            $table->unsignedInteger('garage_id');
             $table->string('requested_address');
+            $table->string('repair_for');
             $table->integer('requested_pincode');
             $table->timestamps();
         });

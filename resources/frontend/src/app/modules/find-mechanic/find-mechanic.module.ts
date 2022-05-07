@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { RatingModule } from 'ngx-bootstrap/rating';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RequestsModule } from '../requests/requests.module';
 
 
 
@@ -18,7 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
     RatingModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    RequestsModule
   ]
 })
 export class FindMechanicModule { }

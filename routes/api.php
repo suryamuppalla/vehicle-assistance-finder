@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\GarageController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\RequestsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,15 @@ Route::group(['prefix' => 'garages'], function() {
 
     Route::post('/update/{id}', [GarageController::class, 'update']);
     Route::post('/delete/{id}', [GarageController::class, 'destroy']);
+});
+
+Route::group(['prefix' => 'requests'], function() {
+    Route::get('', [RequestsController::class, 'index']);
+    Route::get('/{id}', [RequestsController::class, 'show']);
+    Route::post('', [RequestsController::class, 'store']);
+
+    Route::post('/update/{id}', [RequestsController::class, 'update']);
+    Route::post('/delete/{id}', [RequestsController::class, 'destroy']);
 });
 
 Route::group(['prefix' => 'images'], function() {

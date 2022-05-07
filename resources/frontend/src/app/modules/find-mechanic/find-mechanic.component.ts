@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ApplicationService } from 'src/app/services/application.service';
 import { environment } from 'src/environments/environment';
+import { BookAppointmentComponent } from '../requests/book-appointment/book-appointment.component';
 
 @Component({
   selector: 'app-find-mechanic',
@@ -15,13 +16,17 @@ export class FindMechanicComponent implements OnInit {
   public garages: any[] = [];
   public imageUrl = environment.API.replace('/public/api', '');
   modalRef?: BsModalRef;
+  bsModalRef?: BsModalRef;
   public deleteGarage: any;
+  public user: any;
+  public bookingDetails: any;
   constructor(
     private router: Router,
     public applicationService: ApplicationService,
     private httpClient: HttpClient,
     public modalService: BsModalService
   ) {
+    this.applicationService.currentUser$.subscribe(user => this.user = user);
   }
 
   ngOnInit(): void {
@@ -60,5 +65,9 @@ export class FindMechanicComponent implements OnInit {
     }, (error: any) => {
       console.error(error);
     });
+  }
+
+  openBookingModal(item: any) {
+    this.bookingDetails = item;
   }
 }

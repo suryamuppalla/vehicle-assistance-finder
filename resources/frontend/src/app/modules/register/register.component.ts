@@ -50,11 +50,11 @@ export class RegisterComponent implements OnInit {
 
         this.loading = '';
         this.alert.type = 'success';
-        this.alert.msg = 'Successfully registered into the system!';
-        this.applicationService.setToken(response.token);
-        this.applicationService.currentUser$.next(response.data);
+        this.alert.msg = 'Successfully registered into the system! Please login to continue';
+        // this.applicationService.setToken(response.token);
+        // this.applicationService.currentUser$.next(response.data);
         setTimeout(() => {
-          this.router.navigate(['/mechanics']);
+          this.router.navigate(['/login']);
         }, 2000);
       }, (error: any) => {
         console.error(error);
