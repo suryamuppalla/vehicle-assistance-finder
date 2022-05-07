@@ -12,6 +12,9 @@ const routes: Routes = [
   {
     path: 'mechanics', component: FindMechanicComponent
   },
+  {
+    path: 'update-mechanic/:id', component: AddMechanicComponent
+  },
   { path: 'add-mechanic', component: AddMechanicComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent }

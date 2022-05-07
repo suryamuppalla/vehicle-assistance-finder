@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ApplicationService } from 'src/app/services/application.service';
 import { environment } from 'src/environments/environment';
 
@@ -13,10 +14,13 @@ export class FindMechanicComponent implements OnInit {
 
   public garages: any[] = [];
   public imageUrl = environment.API.replace('/public/api', '');
+  modalRef?: BsModalRef;
+  public deleteGarage: any;
   constructor(
     private router: Router,
     public applicationService: ApplicationService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    public modalService: BsModalService
   ) {
   }
 
@@ -37,6 +41,24 @@ export class FindMechanicComponent implements OnInit {
       }
     }, (error: any) => {
       console.log(error);
+    });
+  }
+
+  openDeleteModal(template: any, item: any) {
+    this.deleteGarage = item;
+    this.modalRef = this.modalService.show(template);
+  }
+
+  confirmDelete() {
+    this.httpClient.post(
+      `${environment.API}/garages/delete/${this.deleteGarage.id}`,
+      this.deleteGarage
+    ).subscribe((response: any) => {
+      console.log(response);
+      this.modalRef?.hide();
+      this.getGarages();
+    }, (error: any) => {
+      console.error(error);
     });
   }
 }

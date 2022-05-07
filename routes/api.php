@@ -19,7 +19,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'garages'], function() {
     Route::get('', [GarageController::class, 'index']);
+    Route::get('/{id}', [GarageController::class, 'show']);
     Route::post('', [GarageController::class, 'store']);
+
+    Route::post('/update/{id}', [GarageController::class, 'update']);
+    Route::post('/delete/{id}', [GarageController::class, 'destroy']);
 });
 
 Route::group(['prefix' => 'images'], function() {
