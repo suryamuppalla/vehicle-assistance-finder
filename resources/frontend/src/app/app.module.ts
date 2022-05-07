@@ -12,6 +12,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApplicationService } from './services/application.service';
 import { JWTInterceptor } from './interceptors/http.interceptor';
 import { AlertModule } from '@full-fledged/alerts';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AlertModule } from '@full-fledged/alerts';
     RegisterModule,
     FindMechanicModule,
     AddMechanicModule,
-    AlertModule.forRoot({maxMessages: 5, timeout: 3000, positionX: 'right', positionY: 'top'})
+    AlertModule.forRoot({maxMessages: 5, timeout: 3000, positionX: 'right', positionY: 'top'}),
+    NgxLoadingModule.forRoot({})
   ],
   providers: [
     ApplicationService,

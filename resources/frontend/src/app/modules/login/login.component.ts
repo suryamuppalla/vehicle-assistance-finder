@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
+    this.applicationService.loading = true;
     this.httpClient.post(`${environment.API}/user/login`, this.form.value)
       .subscribe((response: any) => {
         console.log(response);
@@ -46,8 +47,10 @@ export class LoginComponent implements OnInit {
         this.alertService.success('Successfully loggedin!');
 
         this.router.navigate(['/mechanics']);
+        this.applicationService.loading = false;
       }, (error: any) => {
         console.error(error);
+        this.applicationService.loading = false;
         this.alert.msg = 'Invalid Email or Password, please try again!';
         this.alert.type = 'danger';
         this.loading = '';

@@ -76,6 +76,7 @@ export class AddMechanicComponent implements OnInit {
       return;
     }
 
+    this.applicationService.loading = true;
     this.form.patchValue({ created_by: this.user?.id });
     const url = this.id ? `${environment.API}/garages/update/${this.id}` : `${environment.API}/garages`;
     this.httpClient.post(
@@ -83,11 +84,13 @@ export class AddMechanicComponent implements OnInit {
       this.form.value
     ).subscribe((response: any) => {
       console.log(response);
+      this.applicationService.loading = false;
       this.response = response;
       this.router.navigate(['/mechanics']);
       this.alertService.success(`Garage has been ${this.id ? 'updated ': 'added '} successfully`);
     }, (error: any) => {
       console.log(error);
+      this.applicationService.loading = false;
     });
   }
 

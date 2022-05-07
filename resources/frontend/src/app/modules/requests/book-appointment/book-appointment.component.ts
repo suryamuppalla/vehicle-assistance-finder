@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AlertService } from '@full-fledged/alerts';
 import { environment } from 'src/environments/environment';
 
@@ -24,7 +25,8 @@ export class BookAppointmentComponent implements OnInit {
 
   constructor(
     private httpClient: HttpClient,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router
   ) {
   }
 
@@ -48,6 +50,7 @@ export class BookAppointmentComponent implements OnInit {
       console.log(response);
       this.bookEmitter.emit(null);
       this.requestEmitter.emit(response);
+      this.router.navigate(['/requests']);
       this.alertService.success(this.requestDetails ? 'Request has been Updated Successfully' : 'Request Created Successfully');
     }, (error: any) => {
       console.error(error);

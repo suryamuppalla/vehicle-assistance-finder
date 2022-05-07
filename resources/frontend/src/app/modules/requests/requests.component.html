@@ -12,7 +12,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">{{ item?.garage?.title }}</h5>
+                                <h5 class="card-title">{{ item?.repair_for }}</h5>
 
                                 <div class="d-block mt-2 mb-3">
                                     <p class="mb-0 text-muted">Requested Address:</p>
@@ -21,9 +21,9 @@
                                     </p>
                                 </div>
                                 <div class="d-block mt-2">
-                                    <p class="mb-0 text-muted">Requested For:</p>
+                                    <p class="mb-0 text-muted">Garage Name:</p>
                                     <p class="card-text">
-                                        {{ item?.repair_for }}
+                                        {{ item?.garage?.title }}
                                     </p>
                                 </div>
 

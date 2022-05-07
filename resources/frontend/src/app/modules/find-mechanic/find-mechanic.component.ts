@@ -33,10 +33,14 @@ export class FindMechanicComponent implements OnInit {
   }
 
   getGarages() {
+    this.applicationService.loading = true;
     this.httpClient.get(
       `${environment.API}/garages`
     ).subscribe((response: any) => {
       console.log(response);
+      setTimeout(() => {
+        this.applicationService.loading = false;
+      }, 1000);
       this.garages = response;
       if (this.garages?.length) {
         this.garages?.forEach(item => {
@@ -44,6 +48,7 @@ export class FindMechanicComponent implements OnInit {
         });
       }
     }, (error: any) => {
+      this.applicationService.loading = false;
       console.log(error);
     });
   }

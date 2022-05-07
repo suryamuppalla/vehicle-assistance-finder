@@ -34,8 +34,8 @@
             <label for="requested_date">Requested Date</label>
             <input type="text" class="form-control" name="requested_date" id="requested_date"
                 aria-describedby="requested_date" placeholder="Requested Date" formControlName="requested_date"
-                bsDatepicker
-                [bsConfig]="{ withTimepicker: true, adaptivePosition: true, rangeInputFormat : 'MMMM Do YYYY, h:mm a', dateInputFormat: 'MMMM Do YYYY, h:mm:ss a' }">
+                bsDatepicker placement="top" autocomplete="off"
+                [bsConfig]="{ withTimepicker: true, adaptivePosition: false, rangeInputFormat : 'MMMM Do YYYY, h:mm a', dateInputFormat: 'MMMM Do YYYY, h:mm:ss a' }">
             <small id="requested_date" class="form-text text-muted">Required</small>
         </div>
     </div>

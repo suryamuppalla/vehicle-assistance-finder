@@ -40,3 +40,10 @@
 </div>
 
 <ff-alerts></ff-alerts>
+
+<ngx-loading [show]="applicationService.loading" [config]="{
+        animationType: ngxLoadingAnimationTypes.chasingDots,
+        primaryColour: primaryColour,
+        secondaryColour: secondaryColour,
+        backdropBorderRadius: '3px'
+      }" [template]="loadingTemplate"></ngx-loading>
