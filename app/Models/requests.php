@@ -9,5 +9,5 @@ class Requests extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'garage_id', 'requested_address', 'requested_pincode', 'repair_for'];
+    protected $fillable = ['user_id', 'garage_id', 'requested_date', 'requested_address', 'requested_pincode', 'repair_for'];
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('garage_id');
             $table->string('requested_address');
+            $table->string('requested_date');
             $table->string('repair_for');
             $table->integer('requested_pincode');
             $table->timestamps();

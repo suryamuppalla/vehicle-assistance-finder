@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ApplicationService } from 'src/app/services/application.service';
+import { AlertService } from '@full-fledged/alerts';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-mechanic',
@@ -12,13 +14,11 @@ import { ApplicationService } from 'src/app/services/application.service';
   styleUrls: ['./add-mechanic.component.scss']
 })
 export class AddMechanicComponent implements OnInit {
-  modalRef?: BsModalRef;
   public response: any;
   public user: any;
   public id = '';
   public details: any;
   public imageUrl = environment.API.replace('/public/api', '');
-  @ViewChild('template') template: any;
   public form = new FormGroup({
     title: new FormControl(null, Validators.required),
     description: new FormControl(null, Validators.required),
@@ -37,11 +37,15 @@ export class AddMechanicComponent implements OnInit {
     private router: Router,
     private activedRoute: ActivatedRoute,
     private modalService: BsModalService,
-    private applicationService: ApplicationService
+    private applicationService: ApplicationService,
+    private alertService: AlertService,
+    private location: Location
   ) {
     this.activedRoute.params.subscribe(param => {
       this.id = param.id;
-      this.getMechanicDetails(this.id);
+      if (this.id) {
+        this.getMechanicDetails(this.id);
+      }
     });
   }
 
@@ -80,8 +84,8 @@ export class AddMechanicComponent implements OnInit {
     ).subscribe((response: any) => {
       console.log(response);
       this.response = response;
-      this.modalRef = this.modalService.show(this.template);
       this.router.navigate(['/mechanics']);
+      this.alertService.success(`Garage has been ${this.id ? 'updated ': 'added '} successfully`);
     }, (error: any) => {
       console.log(error);
     });
@@ -97,5 +101,9 @@ export class AddMechanicComponent implements OnInit {
     }, (error: any) => {
       console.log(error);
     });
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

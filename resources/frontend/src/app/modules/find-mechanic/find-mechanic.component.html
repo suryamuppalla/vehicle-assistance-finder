@@ -76,7 +76,7 @@
 
             <div class="card" *ngIf="bookingDetails">
                 <div class="card-body">
-                    <app-book-appointment (bookEmitter)="bookingDetails = $event" [bookingDetails]="bookingDetails">
+                    <app-book-appointment (bookEmitter)="bookingDetails = $event" [garageDetails]="bookingDetails">
                     </app-book-appointment>
                 </div>
             </div>

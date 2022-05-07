@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { AlertService } from '@full-fledged/alerts';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ApplicationService } from 'src/app/services/application.service';
 import { environment } from 'src/environments/environment';
-import { BookAppointmentComponent } from '../requests/book-appointment/book-appointment.component';
 
 @Component({
   selector: 'app-find-mechanic',
@@ -21,10 +20,10 @@ export class FindMechanicComponent implements OnInit {
   public user: any;
   public bookingDetails: any;
   constructor(
-    private router: Router,
     public applicationService: ApplicationService,
     private httpClient: HttpClient,
-    public modalService: BsModalService
+    public modalService: BsModalService,
+    private alertService: AlertService
   ) {
     this.applicationService.currentUser$.subscribe(user => this.user = user);
   }
@@ -60,6 +59,7 @@ export class FindMechanicComponent implements OnInit {
       this.deleteGarage
     ).subscribe((response: any) => {
       console.log(response);
+      this.alertService.success('Garage Deleted Successfully');
       this.modalRef?.hide();
       this.getGarages();
     }, (error: any) => {
