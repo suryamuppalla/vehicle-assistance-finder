@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-8" *ngIf="garages?.length; else NoGarages">
             <div class="d-block" *ngIf="!bookingDetails">
                 <h5>Mechanics/Garages</h5>
                 <p class="mt-0">Matched Results: {{ garages?.length }}</p>
@@ -117,6 +117,20 @@
 
         <div class="d-flex justify-content-end align-items-center mt-4">
             <button class="btn btn-danger btn-sm" (click)="confirmDelete()">Delete Anyway</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #NoGarages>
+    <div class="col-lg-8">
+        <h5>Mechanics/Garages</h5>
+        <p class="mt-0">Matched Results: {{ garages?.length }}</p>
+        <div class="d-block mt-4">
+            <h1 class="text-left">
+                <i class="fa fa-frown-o" aria-hidden="true"></i>
+            </h1>
+
+            <span class="">No Records Found...</span>
         </div>
     </div>
 </ng-template>
